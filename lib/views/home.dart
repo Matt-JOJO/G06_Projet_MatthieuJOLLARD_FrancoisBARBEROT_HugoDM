@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
           children: [
           Icon(Icons.menu),
           SizedBox(width: 10,),
-          Text('Favorite Games')
+          Text('Home')
         ],) ,
       ),
     );
