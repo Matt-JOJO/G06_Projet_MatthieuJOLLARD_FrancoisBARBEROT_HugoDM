@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mysteamapp-dev-110843-authRole",
+      "UnauthRoleArn": "arn:aws:iam::283745394622:role/amplify-mysteamapp-dev-110843-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::283745394622:role/amplify-mysteamapp-dev-110843-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-mysteamapp-dev-110843-deployment",
+      "UnauthRoleName": "amplify-mysteamapp-dev-110843-unauthRole",
+      "StackName": "amplify-mysteamapp-dev-110843",
+      "StackId": "arn:aws:cloudformation:eu-west-3:283745394622:stack/amplify-mysteamapp-dev-110843/67542ad0-ab86-11ed-803e-0644314b0d9e",
+      "AmplifyAppId": "d28douf0ycpovz"
+    },
+    "categories": {
+      "auth": {
+        "mysteamapp530f42f3": {}
+      }
+    }
+  }
+}

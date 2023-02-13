@@ -22,3 +22,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+//check if a user is logged in
+/*
+Future<bool> isUserSignedIn() async {
+  final result = await Amplify.Auth.fetchAuthSession();
+  return result.isSignedIn;
+}*/
+
+//get current user informations
+/*
+Future<AuthUser> getCurrentUser() async {
+  final user = await Amplify.Auth.getCurrentUser();
+  return user;
+}*/
