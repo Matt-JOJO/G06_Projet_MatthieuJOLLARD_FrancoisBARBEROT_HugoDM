@@ -38,6 +38,9 @@ dependencies:
   amplify_flutter: ^0.6.0
   amplify_datastore: ^0.6.0
   amplify_auth_cognito: ^0.6.0
+
+  flutter_svg: ^2.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -47,6 +50,18 @@ dev_dependencies:
 
 flutter:
 
+  assets:
+    - icones/
+
+  fonts:
+    - family: GoogleSans
+      fonts:
+        - asset: fonts/GoogleSans-Bold.ttf
+        - asset: fonts/GoogleSans-BoldItalic.ttf
+        - asset: fonts/GoogleSans-Italic.ttf
+        - asset: fonts/GoogleSans-Medium.ttf
+        - asset: fonts/GoogleSans-MediumItalic.ttf
+        - asset: fonts/GoogleSans-Regular.ttf
 
   uses-material-design: true
 
