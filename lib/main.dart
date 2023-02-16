@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mysteamapp/views/Wishlist.dart';
 import 'package:mysteamapp/views/home.dart';
 
 // Amplify Flutter Packages
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:mysteamapp/views/loginView.dart';
 
 // Generated in previous step
 import 'amplifyconfiguration.dart';
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
         primaryColor: Colors.black12,
       ),
-      home: HomePage(),
+      home: Login(),
     );
   }
 }

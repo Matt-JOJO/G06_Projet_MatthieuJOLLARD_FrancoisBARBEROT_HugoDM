@@ -6,18 +6,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
- Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title: Row(
           children: [
-          Icon(Icons.menu),
-          SizedBox(width: 10,),
-          Text('Home')
-        ],) ,
+            Icon(Icons.menu),
+            SizedBox(
+              width: 10,
+            ),
+            Text('Home')
+          ],
+        ),
+        centerTitle: false,
       ),
     );
   }

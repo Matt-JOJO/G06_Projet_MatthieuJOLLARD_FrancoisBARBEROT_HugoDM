@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../../amplifyconfiguration.dart';
 
 class SignOut extends StatefulWidget {
+  const SignOut({super.key});
+
   @override
   State<SignOut> createState() => _SignOutState();
 }
