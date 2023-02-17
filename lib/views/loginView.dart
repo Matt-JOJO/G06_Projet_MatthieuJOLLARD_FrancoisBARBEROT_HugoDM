@@ -11,6 +11,13 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   // final _loginField
+  bool _obscureText = false;
+
+  void _showPassword() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +33,7 @@ class _LoginState extends State<Login> {
             children: [
               Text(
                 "Bienvenue !",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40,
                   fontFamily: 'GoogleSans',
@@ -51,9 +59,12 @@ class _LoginState extends State<Login> {
               TextFormField(
                 textAlignVertical: TextAlignVertical.center,
                 keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
                 // controller: field,
                 decoration: InputDecoration(
-                  fillColor: Colors.grey,
+                  fillColor: Color(0xFF1E262C),
                   filled: true,
                   label: const Center(
                     child: Text(
@@ -73,13 +84,19 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: 15,
               ),
+
+              ///Field for password///
               TextFormField(
+                // controller: password,
                 textAlignVertical: TextAlignVertical.center,
                 keyboardType: TextInputType.visiblePassword,
+                obscureText: !_obscureText,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
 
-                // controller: field,
                 decoration: InputDecoration(
-                  fillColor: Colors.grey,
+                  fillColor: Color(0xFF1E262C),
                   filled: true,
                   label: const Center(
                     child: Text(
@@ -92,12 +109,21 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                      color: Theme.of(context).primaryColorLight,
+                    ),
+                    onPressed: () {
+                      _showPassword();
+                    },
+                  ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5)),
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: 80,
               ),
               InkWell(
                 onTap: () {},
@@ -127,14 +153,12 @@ class _LoginState extends State<Login> {
                 hoverColor: Colors.indigo,
                 child: Container(
                   height: 50,
-
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.indigo,
-                      width: 2,
-                    )
-                  ),
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: Colors.indigo,
+                        width: 2,
+                      )),
                   child: Center(
                     child: Text(
                       "Créer un nouveau compte",
@@ -147,11 +171,30 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+                  onTap: () {},
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          "Mot de passe oublié",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'GoogleSans',
+                              fontWeight: FontWeight.normal),
+                        ),
+                      )),
+                ),
+              )
             ],
           )),
         ),
       ),
+
     );
   }
 /*
