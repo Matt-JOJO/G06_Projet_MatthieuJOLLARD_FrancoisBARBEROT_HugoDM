@@ -9,7 +9,7 @@ class SignupState {
   final String password;
   bool get isPasswordValid => password.length > 6;
   final String passwordCheck;
-  int get isPasswordCheckedValid => passwordCheck.compareTo(password);
+  bool get isPasswordCheckedValid => passwordCheck.length >6;
 
   final FormSubmissionStatus formStatus;
 

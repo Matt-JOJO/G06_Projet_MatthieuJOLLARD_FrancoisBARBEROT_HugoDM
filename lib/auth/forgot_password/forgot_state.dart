@@ -1,28 +1,25 @@
 
 import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 
-class LoginState {
+class ForgotState {
   final String email;
   bool get isEmailValid => email.contains('@');
-  final String password;
-  bool get isPasswordValid => password.length > 6;
+
 
   final FormSubmissionStatus formStatus;
 
-  LoginState({
+  ForgotState({
     this.email = '',
-    this.password = '',
     this.formStatus = const InitialFormStatus(),
   });
 
-  LoginState copyWith({
+  ForgotState copyWith({
     String? email,
-    String? password,
+
     FormSubmissionStatus? formStatus,
   }) {
-    return LoginState(
+    return ForgotState(
       email: email ?? this.email,
-      password: password ?? this.password,
       formStatus: formStatus ?? this.formStatus,
     );
   }

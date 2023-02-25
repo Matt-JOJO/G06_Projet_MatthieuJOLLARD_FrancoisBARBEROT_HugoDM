@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 import 'package:mysteamapp/auth/sign_up/signup_state.dart';
 import '../authRepo.dart';
+import '../auth_cubit.dart';
 import 'signup_event.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState>{
   final AuthRepo? authRepo;
-  SignupBloc({ required this.authRepo}) : super(SignupState()){
+  final AuthCubit? authCubit;
+  SignupBloc({  required this.authRepo, required this.authCubit}) : super(SignupState()){
     on<SignupEvent>(_onEvent);
   }
 
@@ -36,6 +38,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState>{
         password: state.password,
     );
     emit( state.copyWith(formStatus: SubmissionSuccess()));
+   /* authCubit!.showConfirm(username: state.username, email: state.email, password: state.password);*/
+
+
   }catch (e) {
     emit( state.copyWith(formStatus: SubmissionFailed(event as Exception)));
   }
