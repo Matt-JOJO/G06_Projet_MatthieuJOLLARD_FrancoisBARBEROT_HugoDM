@@ -1,6 +1,7 @@
-import 'dart:ui';
+import 'package:mysteamapp/models/movieCardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mysteamapp/views/widgets/game_card.dart';
 
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
@@ -56,31 +57,28 @@ class _AcceuilState extends State<Acceuil> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 10),
+                  color: const Color(0xFF1E262C),
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Rechercher un jeu...',
-                      labelStyle: const TextStyle(
+                      labelStyle: TextStyle(
                         fontSize: 15,
                         fontFamily: 'GoogleSans',
                         color: Colors.white,
                       ),
                       hintText: 'Entre le nom du Speaker',
-                      suffixIcon:IconButton(
-                        icon: SvgPicture.asset(
-                            'icones/whishlist.svg'),
-                        color: Colors.deepPurpleAccent,
-                        onPressed: () {
-                          // do something
-                        },
+                      border: OutlineInputBorder(),
+                      suffixIcon:Icon( Icons.search,
+                        color: Color(0xFF636AF6),
                       ),
-                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
               ),
               Container(
                 //color: const Color(0XFF2E2E2E),
-                height: 250,
+                height: 200,
+                width: 550,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: const AssetImage('images/back_PS4.jpg'),
@@ -91,30 +89,28 @@ class _AcceuilState extends State<Acceuil> {
                 child: Row(
                   children: [
                     SizedBox(
-                      width:300,
+                      width:270,
                       child:Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top:15, left:15, bottom:5),
+                          const Padding(
+                            padding: EdgeInsets.only(top:15, left:15),
                             child: Text(
-                              "Titre du jeu".toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                letterSpacing: 1,
+                              "Titre du jeu",
+                              style: TextStyle(
+                                fontSize: 22,
                                 color: Colors.white,
                                 fontFamily: "GoogleSans",
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left:15, bottom: 15),
+                          const Padding(
+                            padding: EdgeInsets.only(left:15, bottom: 10),
                             child: Text(
-                              "Edition du jeu".toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                letterSpacing: 1,
+                              "Edition du jeu",
+                              style: TextStyle(
+                                fontSize: 22,
                                 color: Colors.white,
                                 fontFamily: "GoogleSans",
                               ),
@@ -125,8 +121,7 @@ class _AcceuilState extends State<Acceuil> {
                             child: Text(
                               "Une description du jeu mise en avant",
                               style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 1,
+                                fontSize: 13,
                                 color: Colors.white,
                                 fontFamily: "GoogleSans",
                                 fontWeight: FontWeight.normal,
@@ -134,12 +129,12 @@ class _AcceuilState extends State<Acceuil> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top:18, left:15, bottom:15),
+                            padding: const EdgeInsets.only(top:10, left:15, bottom:5),
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 fixedSize: const Size(150, 30),
-                                primary:  Colors.white,
-                                backgroundColor: Colors.blueAccent,
+                                foregroundColor:  Colors.white,
+                                backgroundColor: const Color(0xFF636AF6),
                               ),
                               onPressed: (){
                                 //print('Pressed');
@@ -151,7 +146,7 @@ class _AcceuilState extends State<Acceuil> {
                       ),
                     ),
                     SizedBox(
-                        width:220,
+                        width:120,
                         child:Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -160,7 +155,6 @@ class _AcceuilState extends State<Acceuil> {
                                 padding: const EdgeInsets.only(right:15, bottom:15),
                                 child: Image.asset(
                                   'images/ps4.jpg',
-                                  width: 120,
                                 ),
                               ),
                             ]
@@ -172,11 +166,11 @@ class _AcceuilState extends State<Acceuil> {
               const SizedBox(
                 height: 15,
               ),
-              Column(
+              Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children:const [
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.only(left:12, top:12, right: 12),
                       child: Text(
                         "Les meilleures ventes",
                         style: TextStyle(
@@ -190,105 +184,14 @@ class _AcceuilState extends State<Acceuil> {
                     ),
                   ]
               ),
-              Container(
-                color: const Color(0XFF2E2E2E),
-                margin: const EdgeInsets.only(top:15, left:15, bottom:5, right: 15),
-                height: 150,
-                /*decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: const AssetImage('images/back_PS4.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.modulate)
-                  )
-              ),*/
-                child: Row(
-                  children: [
-                    SizedBox(
-                        child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children:[
-                              Padding(
-                                padding: const EdgeInsets.only(left:15, bottom:15, top: 15),
-                                child: Image.asset(
-                                  'images/ps4.jpg',
-                                  height: 120,
-                                ),
-                              ),
-                            ]
-                        )
-                    ),
-                    SizedBox(
-                      width:200,
-                      child:Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.only(left:15, bottom:5),
-                            child: Text(
-                              "Nom du jeu",
-                              style: TextStyle(
-                                fontSize: 18,
-                                letterSpacing: 1,
-                                color: Colors.white,
-                                fontFamily: "GoogleSans",
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left:15, bottom: 15),
-                            child: Text(
-                              "Nom de l'éditeur",
-                              style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 1,
-                                color: Colors.white,
-                                fontFamily: "GoogleSans",
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left:15),
-                            child: Text(
-                              "Prix: 10,00€",
-                              style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 1,
-                                color: Colors.white,
-                                fontFamily: "GoogleSans",
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                        child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children:[
-                              Padding(
-                                padding: const EdgeInsets.only(),
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    textStyle: const TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                    fixedSize: const Size(100, 150),
-                                    primary:  Colors.white,
-                                    backgroundColor: Colors.blueAccent,
-                                  ),
-                                  onPressed: (){
-                                    //print('Pressed');
-                                  },
-                                  child: const Text('En savoir plus',
-                                      textAlign: TextAlign.center),
-                                ),
-                              )
-                            ]
-                        )
-                    ),
-                  ],
+              Expanded(
+                child: ListView.builder(
+                  itemCount: CatalogModel.items.length,
+                  itemBuilder: (context, index) {
+                    return ItemWidget(
+                      item: CatalogModel.items[index],
+                    );
+                  },
                 ),
               ),
             ],
