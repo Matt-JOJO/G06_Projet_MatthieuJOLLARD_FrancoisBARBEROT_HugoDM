@@ -1,5 +1,4 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mysteamapp/auth/auth_cubit.dart';
@@ -8,7 +7,7 @@ import 'package:mysteamapp/auth/login/login_bloc.dart';
 import 'package:mysteamapp/auth/login/login_event.dart';
 import 'package:mysteamapp/auth/login/login_state.dart';
 
-import '../../amplifyconfiguration.dart';
+
 import '../authRepo.dart';
 
 class Login extends StatefulWidget {
@@ -38,7 +37,7 @@ class _LoginState extends State<Login> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.initState();
-    _configureAmplify();
+
   }
 
   @override
@@ -48,17 +47,7 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  Future<void> _configureAmplify() async {
-    try {
-      final auth = AmplifyAuthCognito();
-      await Amplify.addPlugin(auth);
 
-      // call Amplify.configure to use the initialized categories in your app
-      await Amplify.configure(amplifyconfig);
-    } on Exception catch (e) {
-      safePrint('An error occurred configuring Amplify: $e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,13 +56,14 @@ class _LoginState extends State<Login> {
       body: BlocProvider(
         create: (context) => LoginBloc(
           authRepo: context.read<AuthRepo>(),
+          authCubit: context.read<AuthCubit>(),
         ),
         //child : _loginForm(),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             _loginForm(),
-            _forgotPassword(),
+            _forgotPassword( ),
           ],
         ),
       ),

@@ -11,6 +11,8 @@ import 'package:mysteamapp/auth/sign_up/signup_view.dart';
 import 'login/login_view.dart';
 
 class AuthNavigator extends StatelessWidget {
+  const AuthNavigator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>

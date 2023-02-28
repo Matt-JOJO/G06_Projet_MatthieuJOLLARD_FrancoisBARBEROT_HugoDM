@@ -1,12 +1,8 @@
-abstract class LoginEvent{}
+abstract class ForgotEvent{}
 
-class LoginEmailChanged extends LoginEvent{
+class ForgotEmailChanged extends ForgotEvent{
   final String email;
-  LoginEmailChanged({required this.email});
+  ForgotEmailChanged({required this.email});
 }
-class LoginPasswordChanged extends LoginEvent{
-  final String password;
 
-  LoginPasswordChanged({required this.password});
-}
-class LoginSubmitted extends LoginEvent{}
+class ForgotSubmitted extends ForgotEvent{}

@@ -1,14 +1,18 @@
 
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mysteamapp/auth/auth_credentials.dart';
+import 'package:mysteamapp/auth/auth_cubit.dart';
+
 import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 import 'package:mysteamapp/auth/login/login_state.dart';
 import '../authRepo.dart';
 import 'login_event.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState>{
-  final AuthRepo? authRepo;
-  LoginBloc({ required this.authRepo}) : super(LoginState()){
+  final AuthRepo authRepo;
+  final AuthCubit authCubit;
+  LoginBloc( { required this.authRepo,required this.authCubit,}) : super(LoginState()){
     on<LoginEvent>(_onEvent);
   }
 
@@ -24,11 +28,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
     emit (state.copyWith(formStatus: FormSubmitting()));
   }
   try {
-    await authRepo?.login(
+    final userId = await authRepo.login(
       email: state.email,
       password: state.password,
     );
     emit( state.copyWith(formStatus: SubmissionSuccess()));
+    authCubit.launchSession(AuthCredentials(email: state.email, password: state.password));
   }catch (e) {
     emit( state.copyWith(formStatus: SubmissionFailed(event as Exception)));
   }

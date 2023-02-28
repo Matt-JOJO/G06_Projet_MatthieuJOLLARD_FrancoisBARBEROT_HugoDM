@@ -6,21 +6,19 @@ import 'package:mysteamapp/auth/forgot_password/forgot_state.dart';
 import '../authRepo.dart';
 import 'forgot_event.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState>{
+class ForgotBloc extends Bloc<ForgotEvent, ForgotState>{
   final AuthRepo? authRepo;
-  LoginBloc({ required this.authRepo}) : super(LoginState()){
-    on<LoginEvent>(_onEvent);
+  ForgotBloc({ required this.authRepo}) : super(ForgotState()){
+    on<ForgotEvent>(_onEvent);
   }
 
 @override
-  Future<void>_onEvent(LoginEvent event, Emitter<LoginState> emit) async{
-  if (event is LoginEmailChanged){
+  Future<void>_onEvent(ForgotEvent event, Emitter<ForgotState> emit) async{
+  if (event is ForgotEmailChanged){
     emit( state.copyWith(email: event.email));
   }
-  else if (event is LoginPasswordChanged){
-    emit( state.copyWith(password: event.password));
-  }
-  else if (event is LoginSubmitted){
+
+  else if (event is ForgotSubmitted){
     emit (state.copyWith(formStatus: FormSubmitting()));
   }
   try {

@@ -2,6 +2,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mysteamapp/auth/auth_cubit.dart';
 
 import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 import 'package:mysteamapp/auth/sign_up/signup_event.dart';
@@ -29,6 +30,7 @@ class _SignupState extends State<Signup> {
         create: (context) =>
             SignupBloc(
               authRepo: context.read<AuthRepo>(),
+              authCubit: context.read<AuthCubit>(),
             ),
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -259,9 +261,7 @@ class _SignupState extends State<Signup> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
         ),
         validator: (value) =>
-        state.isPasswordCheckedValid == 0
-            ? null
-            : 'Veuillez écrire le même mot de passe',
+        state.isPasswordValid ? null : 'Veuillez écrire le même mot de passe',
         onChanged: (value) =>
             context.read<SignupBloc>().add(
               SignupPrimaryPasswordChanged(primPassword: value),
