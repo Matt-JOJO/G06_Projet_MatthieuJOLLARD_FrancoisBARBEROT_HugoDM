@@ -1,4 +1,4 @@
-class CatalogModel {
+/*class CatalogModel {
   static final items = [
     Game(
         id: 1,
@@ -25,4 +25,4 @@ class Game {
   final String image;
 
   Game({required this.id,required this.title, required this.editor, required this.price, required this.image});
-}
+}*/

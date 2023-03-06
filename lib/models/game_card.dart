@@ -1,6 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:mysteamapp/models/movieCardModel.dart';
 
+class Game {
+  late final int rank;
+  late final int appid;
+  late String image = "no image from steam";
+  late String name = "no name from steam";
+  late String descriptionTxt = "no description from steam";
+  late String descriptionLongTxt = "no description from steam";
+  late String editorName = "no editor name from steam";
+  late String price = "no price from steam";
+  List ratings = [];
+
+  Game({
+    required this.rank,
+    required this.appid,
+  });
+
+  factory Game.fromJson(dynamic json) {
+    return Game(
+      rank: json['rank'] as int,
+      appid: json['appid'] as int,
+    );
+  }
+
+  displayGameInfo() {
+    print("The game is : $name of id $appid, cost is $price with rank : $rank , link is : $image, description is : $descriptionTxt\n");
+  }
+  getAppid(){
+    return appid;
+  }
+  setDetails(String url, String text, String gameName, String editor, gamePrice, String longText){
+    descriptionTxt = text;
+    image = url;
+    name = gameName;
+    editorName = editor;
+    price = gamePrice;
+    descriptionLongTxt = longText;
+  }
+
+  setRatings(List gameRatings){
+    for (var i in gameRatings){
+      if (i["review"].toString().length > 130){
+        i["review"] =  "${i["review"].toString().substring(0,130)}...";
+      }
+      i["review"] = i["review"].replaceAll("\n", " ");
+      i["review"] = i["review"].replaceAll("-", "");
+      if (double.parse(i["weighted_vote_score"]) > 0.5 && double.parse(i["weighted_vote_score"]) < 0.7){
+        i["weighted_vote_score"] = 3;
+      }else if (double.parse(i["weighted_vote_score"]) > 0.7 && double.parse(i["weighted_vote_score"]) < 0.8){
+        i["weighted_vote_score"] = 4;
+      }else if (double.parse(i["weighted_vote_score"]) > 0.8){
+        i["weighted_vote_score"] = 5;
+      }
+
+    }
+    ratings = gameRatings;
+  }
+  static List<Game> gameFromSnap(List snapshot) {
+    return snapshot.map((data) {
+      return Game.fromJson(data);
+    }).toList();
+  }
+
+ /* @override
+  String toString(){
+    return 'The game is : $name of id $appid, cost is $price with rank : $rank , link is : $image, description is : $descriptionTxt\n';
+  }*/
+}
+
+/*
 class ItemWidget extends StatelessWidget {
   final Game item;
 
@@ -90,4 +159,4 @@ class ItemWidget extends StatelessWidget {
       ),
     );
   }
-}
+}*/

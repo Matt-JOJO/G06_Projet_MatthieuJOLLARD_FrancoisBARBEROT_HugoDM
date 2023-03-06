@@ -1,7 +1,7 @@
 import 'package:mysteamapp/models/movieCardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mysteamapp/views/widgets/game_card.dart';
+import 'package:mysteamapp/models/game_card.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -51,7 +51,7 @@ class _SearchState extends State<Search> {
                     Padding(
                       padding: const EdgeInsets.only(left:12, top:12, right: 12),
                       child: Text(
-                        "Nombre de résultats : ${CatalogModel.items.length}",
+                        "Nombre de résultats : ",
                         style: const TextStyle(
                           fontSize: 18,
                           letterSpacing: 1,
@@ -66,16 +66,7 @@ class _SearchState extends State<Search> {
               const SizedBox(
                 height: 2,
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: CatalogModel.items.length,
-                  itemBuilder: (context, index) {
-                    return ItemWidget(
-                      item: CatalogModel.items[index],
-                    );
-                  },
-                ),
-              ),
+
             ],
           ),
         )
