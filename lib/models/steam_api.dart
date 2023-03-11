@@ -15,6 +15,8 @@ class SteamAPI {
     }
     return Game.gameFromSnap(temp);
   }
+
+
   /// function to call the steam api to get the details of a game ///
   static Future<void> getGameDetails (Game game) async {
 

@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             child: AppNavigator(),
           )
       )
-          :Acceuil());
+          :const Acceuil());
   }
   Future<void> _configureAmplify() async {
     try{

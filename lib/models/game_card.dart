@@ -69,7 +69,7 @@ class Game {
   }*/
 }
 
-/*
+
 class ItemWidget extends StatelessWidget {
   final Game item;
 
@@ -88,57 +88,51 @@ class ItemWidget extends StatelessWidget {
       alignment: Alignment.center,
       margin: const EdgeInsets.only(left:12, top: 12, right: 12),
       padding: const EdgeInsets.only(left:12),
-      child: Row(
-        children: [
-          Image.asset(
-            item.image,
-            height: 80,
-          ),
-          const SizedBox(width:12),
-          SizedBox(
-            width: 175,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    letterSpacing: 1,
-                    color: Colors.white,
-                    fontFamily: "GoogleSans",
-                  ),
-                ),
-                const SizedBox(height:1),
-                Text(
-                  item.editor,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    letterSpacing: 1,
-                    color: Colors.white,
-                    fontFamily: "GoogleSans",
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                const SizedBox(height:10),
-                Text(
-                  "Prix: ${item.price},00€",
-                  style: const TextStyle(
-                    fontSize: 12,
-                    letterSpacing: 1,
-                    color: Colors.white,
-                    fontFamily: "GoogleSans",
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ],
+      child: Expanded(
+        child: Row(
+          children: [
+            Image.network(
+              item.image,
+              height: 80,
             ),
-          ),
-          SizedBox(
-              width: 110,
-              height: 100,
-              child:(
+            const SizedBox(width:12),
+            SizedBox(
+              width: 175,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    item.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      letterSpacing: 1,
+                      color: Colors.white,
+                      fontFamily: "GoogleSans",
+                    ),
+                  ),
+                  const SizedBox(height:1),
+                  Text(
+                    item.editorName,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      letterSpacing: 1,
+                      color: Colors.white,
+                      fontFamily: "GoogleSans",
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  const SizedBox(height:10),
+                  Text(
+                    "Prix: ${item.price}",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      letterSpacing: 1,
+                      color: Colors.white,
+                      fontFamily: "GoogleSans",
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
                   TextButton(
                     style: TextButton.styleFrom(
                       textStyle: const TextStyle(
@@ -152,11 +146,15 @@ class ItemWidget extends StatelessWidget {
                     },
                     child: const Text('En savoir plus',
                         textAlign: TextAlign.center),
-                  )
-              )
-          ),
-        ],
+                  ),
+                ],
+              ),
+            ),
+
+          ],
+        ),
       ),
+
     );
   }
-}*/
+}
