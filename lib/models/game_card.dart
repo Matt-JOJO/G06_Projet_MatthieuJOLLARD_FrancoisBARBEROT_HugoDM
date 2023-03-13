@@ -72,13 +72,16 @@ class Game {
 
 class ItemWidget extends StatelessWidget {
   final Game item;
+  final usage;
 
-  const ItemWidget({Key? key, required this.item})
+  const ItemWidget({Key? key, required this.item,required this.usage})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return usage ?
+      mainCard() :
+    Container(
       //constraints: BoxConstraints(minWidth: 100, maxWidth: 200),
       decoration: const BoxDecoration(
           color: Color(0xFF1E262C),
@@ -93,11 +96,11 @@ class ItemWidget extends StatelessWidget {
           children: [
             Image.network(
               item.image,
-              height: 80,
+              height: 90,
             ),
             const SizedBox(width:12),
             SizedBox(
-              width: 175,
+              width: 139,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,5 +159,78 @@ class ItemWidget extends StatelessWidget {
       ),
 
     );
+
+  }
+
+  Widget mainCard(){
+return Stack(
+  children: [
+    Image.network(
+      item.image,
+      height: 200,
+      width: 385,
+    ),
+    const SizedBox(width:12),
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+    child:  SizedBox(
+
+      width: 175,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: [
+          Text(
+            item.name,
+            style: const TextStyle(
+              fontSize: 16,
+              letterSpacing: 1,
+              color: Colors.white,
+              fontFamily: "GoogleSans",
+            ),
+          ),
+          const SizedBox(height:1),
+          Text(
+            item.editorName,
+            style: const TextStyle(
+              fontSize: 12,
+              letterSpacing: 1,
+              color: Colors.white,
+              fontFamily: "GoogleSans",
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          const SizedBox(height:10),
+          Text(
+            "Prix: ${item.price}",
+            style: const TextStyle(
+              fontSize: 12,
+              letterSpacing: 1,
+              color: Colors.white,
+              fontFamily: "GoogleSans",
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(
+                fontSize: 20,
+              ),
+              foregroundColor:  Colors.white,
+              backgroundColor: const Color(0xFF636AF6),
+            ),
+            onPressed: (){
+              //print('Pressed');
+            },
+            child: const Text('En savoir plus',
+                textAlign: TextAlign.center),
+          ),
+        ],
+      ),
+    ),)
+
+  ],
+);
   }
 }

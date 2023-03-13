@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mysteamapp/models/game_card.dart';
 import 'package:mysteamapp/models/steam_api.dart';
+import 'package:mysteamapp/views/EmptyLikes.dart';
+import 'package:mysteamapp/views/Wishlist.dart';
+import 'package:mysteamapp/views/widgets/signOut.dart';
+
+
 
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
@@ -13,7 +18,7 @@ class Acceuil extends StatefulWidget {
 
 class _AcceuilState extends State<Acceuil> {
   late List<Game> _games;
-
+  late Iterable<Game> _gamesLimit;
   bool _isLoading = true;
 
   @override
@@ -24,15 +29,18 @@ class _AcceuilState extends State<Acceuil> {
   }
 
   Future<void> getGames() async {
-    setState(() {
-    _isLoading = false;
-  });
+
     _games = await SteamAPI.getMostPlayedGame();
-    for (var i in _games) {
+    _gamesLimit = _games.take(15);
+    for (var i in _gamesLimit) {
       await SteamAPI.getGameDetails(i);
     }
 
+    setState(() {
+      _isLoading = false;
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +58,26 @@ class _AcceuilState extends State<Acceuil> {
                 fontFamily: "GoogleSans",
               ),
             ),
+
           ),
           actions: <Widget>[
             IconButton(
-              icon: SvgPicture.asset('icones/whishlist.svg'),
+              icon: SvgPicture.asset('icones/like.svg'),
               onPressed: () {
-                // do something
+               Navigator.push(context,MaterialPageRoute(builder: (context) => const Wishlist()), );
               },
             ),
+            IconButton(
+              icon: SvgPicture.asset('icones/whishlist.svg'),
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const EmptyLikes()), );
+              },
+            ),
+
+
           ],
           centerTitle: false,
+
         ),
         body: Align(
           child: Column(
@@ -80,7 +98,7 @@ class _AcceuilState extends State<Acceuil> {
                         fontFamily: 'GoogleSans',
                         color: Colors.white,
                       ),
-                      hintText: 'Entre le nom du Speaker',
+                      hintText: 'Entrez un nom',
                       border: OutlineInputBorder(),
                       suffixIcon: Icon(
                         Icons.search,
@@ -92,73 +110,55 @@ class _AcceuilState extends State<Acceuil> {
               ),
               Container(
                 //color: const Color(0XFF2E2E2E),
-                height: 300,
-                width: 400,
                 decoration: BoxDecoration(),
                 child: Row(
                   children: [
-                    SizedBox(
-                      width: 400,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(5.0),
-                            height: 300,
-                            width: 400,
-                            child: _isLoading
-                                ?  Center(child: CircularProgressIndicator())
-                                :  ItemWidget(item: _games[0]),
-                          ),
-
-                        ],
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(5.0),
+                          height: 180,
+                          width: 380,
+                          child: _isLoading
+                              ? Center(child: CircularProgressIndicator())
+                              : ItemWidget(item: _gamesLimit.elementAt(0), usage: true,),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                        width: 120,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 15, bottom: 15),
-                              ),
-                            ]))
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.start,
-                  children:  [
-                /*Padding(
-                  padding: EdgeInsets.only(left: 12, top: 12, right: 12),
-                  child: Text(
-                    "Les meilleures ventes",
-                    style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 1,
-                      color: Colors.white,
-                      fontFamily: "GoogleSans",
-                      decoration: TextDecoration.underline,
+              SizedBox(
+                  height: 22,
+                    child:Text(
+                      "Les meilleures ventes",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 18,
+                        letterSpacing: 1,
+                        color: Colors.white,
+                        fontFamily: "GoogleSans",
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                ),*/
-                    Container(
-                      margin: const EdgeInsets.all(5.0),
-                      height: 300,
-                      width: 400,
-                      child: _isLoading
-                        ?  Center(child: CircularProgressIndicator())
-                      :  ListView.builder( scrollDirection: Axis.vertical,
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Container(
+                  margin: const EdgeInsets.all(5.0),
+                  height: 350,
+                  width: 380,
+                  child: _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                          scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: _games.length,itemBuilder : (context, index){
-                      return ItemWidget(item: _games[index]);
-                    }),
-                    )
+                          itemCount: _gamesLimit.length,
+                          itemBuilder: (context, index) {
+                            return ItemWidget(item: _gamesLimit.elementAt(index), usage: false,);
+                          }),
+                )
               ]),
             ],
           ),

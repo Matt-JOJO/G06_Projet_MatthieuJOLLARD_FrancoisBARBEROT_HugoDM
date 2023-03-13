@@ -10,7 +10,7 @@ class AuthRepo {
       // we get the first element in the attribute where the key is sub
       // it's probably neede that I changed it.
       final userId = attributes
-          .firstWhere((element) => element.userAttributeKey == 'sub')
+          .first
           .value;
       return userId;
     } catch (e) {
@@ -20,8 +20,14 @@ class AuthRepo {
 
   Future<String?> attemptAutoLogin() async {
     try {
-      final session = await Amplify.Auth.fetchAuthSession();
-      return session.isSignedIn ?  (await _getUserAttributes()): null;
+      final sessionOut = await Amplify.Auth.signOut();
+      final session;
+      if (sessionOut == true){
+        session = await Amplify.Auth.fetchAuthSession();
+        return session.isSignedIn ?  (await _getUserAttributes()): null;
+      }
+
+
     } catch (e) {
       throw e;
     }
@@ -76,6 +82,6 @@ class AuthRepo {
   }
 
   Future<void> signOut() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Amplify.Auth.signOut();
   }
 }

@@ -6,6 +6,7 @@ import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 import 'package:mysteamapp/auth/login/login_bloc.dart';
 import 'package:mysteamapp/auth/login/login_event.dart';
 import 'package:mysteamapp/auth/login/login_state.dart';
+import 'package:mysteamapp/views/widgets/signOut.dart';
 
 
 import '../authRepo.dart';
@@ -62,6 +63,7 @@ class _LoginState extends State<Login> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
+
             _loginForm(),
             _forgotPassword( ),
           ],

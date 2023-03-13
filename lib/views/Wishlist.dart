@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'Acceuil.dart';
+
   class Wishlist extends StatelessWidget {
   const Wishlist({Key? key}) : super(key: key);
 
@@ -27,7 +29,9 @@ import 'package:flutter_svg/flutter_svg.dart';
             'icones/close.svg',
             width: 20,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,MaterialPageRoute(builder: (context) => const  Acceuil()), );
+          },
         ),
         centerTitle: false,
 

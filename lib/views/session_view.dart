@@ -4,8 +4,10 @@ import 'package:mysteamapp/session_cubit.dart';
 import 'package:mysteamapp/views/Acceuil.dart';
 
 class SessionView extends StatelessWidget{
+
   @override
   Widget build(BuildContext context){
+
     return const Acceuil();
 
   }

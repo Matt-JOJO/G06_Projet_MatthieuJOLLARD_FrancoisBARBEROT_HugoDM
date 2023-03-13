@@ -17,9 +17,14 @@ class SessionCubit extends Cubit<SessionState>{
     try{
       final userId = await authRepo.attemptAutoLogin();
       final user = userId;
+      if (userId == null){
+        throw Exception('User not logged in');
+      }
       emit(Authenticated(user: user));
+      print("autoLog emit authenticated while signedOut");
     }on Exception{
       emit(Unauthenticated());
+      print("exception autoLog");
     }
 
   }

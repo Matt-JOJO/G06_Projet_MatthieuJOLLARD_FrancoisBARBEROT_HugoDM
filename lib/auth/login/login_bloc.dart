@@ -23,7 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
   }
   else if (event is LoginPasswordChanged){
     emit( state.copyWith(password: event.password));
-  }
+  }/// Form submitted
   else if (event is LoginSubmitted){
     emit (state.copyWith(formStatus: FormSubmitting()));
   }
@@ -33,7 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>{
       password: state.password,
     );
     emit( state.copyWith(formStatus: SubmissionSuccess()));
-    authCubit.launchSession(AuthCredentials(email: state.email, password: state.password));
+    authCubit.launchSession(AuthCredentials( email: state.email, password: state.password));
   }catch (e) {
     emit( state.copyWith(formStatus: SubmissionFailed(event as Exception)));
   }

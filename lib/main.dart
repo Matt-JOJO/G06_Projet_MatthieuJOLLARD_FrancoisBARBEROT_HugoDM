@@ -15,6 +15,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:mysteamapp/auth/login/login_view.dart';
 import 'package:mysteamapp/auth/sign_up/signup_view.dart';
+import 'package:mysteamapp/views/session_view.dart';
 
 // Generated in previous step
 import 'amplifyconfiguration.dart';
@@ -55,7 +56,7 @@ class _MyAppState extends State<MyApp> {
             child: AppNavigator(),
           )
       )
-          :const Acceuil());
+          :CircularProgressIndicator());
   }
   Future<void> _configureAmplify() async {
     try{
