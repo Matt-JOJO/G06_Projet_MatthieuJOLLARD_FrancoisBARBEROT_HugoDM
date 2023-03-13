@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mysteamapp/models/movieCardModel.dart';
+import 'package:mysteamapp/views/info_view.dart';
 
 class Game {
   late final int rank;
@@ -80,7 +81,7 @@ class ItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return usage ?
-      mainCard() :
+      mainCard(context) :
     Container(
       //constraints: BoxConstraints(minWidth: 100, maxWidth: 200),
       decoration: const BoxDecoration(
@@ -145,7 +146,7 @@ class ItemWidget extends StatelessWidget {
                       backgroundColor: const Color(0xFF636AF6),
                     ),
                     onPressed: (){
-                      //print('Pressed');
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => InfoView(item: item)), );
                     },
                     child: const Text('En savoir plus',
                         textAlign: TextAlign.center),
@@ -162,7 +163,7 @@ class ItemWidget extends StatelessWidget {
 
   }
 
-  Widget mainCard(){
+  Widget mainCard( context){
 return Stack(
   children: [
     Image.network(
@@ -221,14 +222,15 @@ return Stack(
               backgroundColor: const Color(0xFF636AF6),
             ),
             onPressed: (){
-              //print('Pressed');
+              Navigator.push(context,MaterialPageRoute(builder: (context) => InfoView(item: item)), );
             },
             child: const Text('En savoir plus',
                 textAlign: TextAlign.center),
           ),
         ],
       ),
-    ),)
+    ),
+    )
 
   ],
 );
