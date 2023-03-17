@@ -46,7 +46,24 @@ const amplifyconfig = ''' {
                             "EMAIL"
                         ]
                     }
+                },
+                "DynamoDBObjectMapper": {
+                    "Default": {
+                        "Region": "eu-west-3"
+                    }
                 }
+            }
+        }
+    },
+    "storage": {
+        "plugins": {
+            "awsDynamoDbStoragePlugin": {
+                "partitionKeyName": "Id_user",
+                "region": "eu-west-3",
+                "arn": "arn:aws:dynamodb:eu-west-3:283745394622:table/dynamoTestApiSteamApp-dev",
+                "streamArn": "arn:aws:dynamodb:eu-west-3:283745394622:table/dynamoTestApiSteamApp-dev/stream/2023-03-15T16:38:32.470",
+                "partitionKeyType": "S",
+                "name": "dynamoTestApiSteamApp-dev"
             }
         }
     }

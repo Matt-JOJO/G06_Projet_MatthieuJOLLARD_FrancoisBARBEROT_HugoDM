@@ -1,3 +1,5 @@
+import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:mysteamapp/models/movieCardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +33,7 @@ class _AcceuilState extends State<Acceuil> {
   Future<void> getGames() async {
 
     _games = await SteamAPI.getMostPlayedGame();
-    _gamesLimit = _games.take(15);
+    _gamesLimit = _games.take(45);
     for (var i in _gamesLimit) {
       await SteamAPI.getGameDetails(i);
     }
@@ -40,7 +42,17 @@ class _AcceuilState extends State<Acceuil> {
       _isLoading = false;
     });
   }
+ /* Future<void> fetchData()  async {
 
+    try {
+      const options = RestOptions(path: "/items", apiName: "testApiSteam" );
+      final restOperation = Amplify.API.get(restOptions: options, );
+      final response = await restOperation.response;
+      print('GET call succeeded: ${response.body}');
+    } on ApiException catch (e) {
+      print('GET call failed: $e');
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {

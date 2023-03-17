@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'game_card.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,13 +25,13 @@ class SteamAPI {
     });
 print(response2.body);
     Map<String, dynamic> result = jsonDecode(response2.body)["${game.getAppid()}"];
-    if (result["success"] != false){
+    try {if (result["success"] != false){
       var img = jsonDecode(response2.body)["${game.getAppid()}"]["data"]["header_image"];
       var descriptionTxt = jsonDecode(response2.body)["${game.getAppid()}"]["data"]["short_description"];
       var descriptionLongTxt = jsonDecode(response2.body)["${game.getAppid()}"]["data"]["detailed_description"];
       var name = jsonDecode(response2.body)["${game.getAppid()}"]["data"]["name"];
       var free = jsonDecode(response2.body)["${game.getAppid()}"]["data"]["is_free"];
-
+// rajouter un try et récupérer le champ avec le problème et voir si je peux quand même afficher les data ou sinon il aut l'ignorer
       String price = "";
 
       if (free == true){
@@ -48,8 +49,12 @@ print(response2.body);
         }
       }
       //var editor = jsonDecode(response2.body)["${game.getAppid()}"]["data"]["publishers"];
-    return  game.setDetails(img, descriptionTxt, name, price.toString(), price.toString(), descriptionLongTxt.toString());
+      return  game.setDetails(img, descriptionTxt, name, price.toString(), price.toString(), descriptionLongTxt.toString());
     }
+    }catch (e){
+      print(e);
+    }
+
   }
 
   /// function to get ratings ///

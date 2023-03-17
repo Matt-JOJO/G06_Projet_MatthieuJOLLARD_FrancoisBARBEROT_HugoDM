@@ -17,6 +17,8 @@ late bool state = false;
     required this.item,
   }) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,7 +222,7 @@ late bool state = false;
         itemCount: item.ratings.length,
         itemBuilder: (context, index) {
           return Text(
-            item.ratings.elementAt(index),
+            item.ratings.elementAt(index)["review"],
             style: const TextStyle(
                 fontSize: 14,
                 color: Colors.white,
