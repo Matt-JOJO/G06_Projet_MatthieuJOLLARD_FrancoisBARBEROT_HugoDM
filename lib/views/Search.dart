@@ -1,8 +1,8 @@
-import 'package:mysteamapp/models/movieCardModel.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mysteamapp/models/game_card.dart';
 
+/// functionnality of the search bar are not implemented
 class Search extends StatefulWidget {
   const Search({super.key});
 

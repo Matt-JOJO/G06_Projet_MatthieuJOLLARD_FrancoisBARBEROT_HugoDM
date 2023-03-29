@@ -1,6 +1,8 @@
 
 import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 
+/// this file allows us to handle the states of the login form
+
 class LoginState {
   final String email;
   bool get isEmailValid => email.contains('@');

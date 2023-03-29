@@ -1,3 +1,4 @@
+///Here we handle the event happening in the login form
 abstract class LoginEvent{}
 
 class LoginEmailChanged extends LoginEvent{

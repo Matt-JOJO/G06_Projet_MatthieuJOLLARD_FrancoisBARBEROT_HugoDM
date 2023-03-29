@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../models/game_card.dart';
 import 'Acceuil.dart';
-import 'EmptyLikes.dart';
+import 'likes_view.dart';
 import 'Wishlist.dart';
 
 class InfoView extends StatelessWidget {
@@ -42,7 +42,7 @@ late bool state = false;
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Wishlist()),
+                MaterialPageRoute(builder: (context) =>  Wishlist()),
               );
             },
           ),

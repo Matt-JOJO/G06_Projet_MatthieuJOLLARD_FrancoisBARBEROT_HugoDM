@@ -1,5 +1,3 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mysteamapp/auth/auth_cubit.dart';
@@ -9,7 +7,7 @@ import 'package:mysteamapp/auth/sign_up/signup_event.dart';
 import 'package:mysteamapp/auth/sign_up/signup_bloc.dart';
 import 'package:mysteamapp/auth/sign_up/signup_state.dart';
 
-import '../../amplifyconfiguration.dart';
+
 import '../authRepo.dart';
 
 class Signup extends StatefulWidget {
@@ -36,6 +34,7 @@ class _SignupState extends State<Signup> {
           alignment: Alignment.bottomCenter,
           children: [
             _signupForm(),
+            _navigateLogin(),
           ],
         ),
       ),
@@ -99,7 +98,7 @@ class _SignupState extends State<Signup> {
       ),
     );
   }
-
+/// here are the different widgets used in the SignupForm, they are similar to the one found in the login_view file
 
   Widget _primaryText() {
     return const Text(
@@ -300,54 +299,13 @@ class _SignupState extends State<Signup> {
       );
     });
   }
-
+  Widget _navigateLogin(){
+    return SafeArea(child: TextButton(child: Text('Vous possédez déjà un compte ? Se connecter'),onPressed: ()=> context.read<AuthCubit>().showLogin(),));
+  }
   void _showError(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 } /// fin de la classe
 
-/*
 
-// Create a boolean for checking the sign up status
-bool isSignUpComplete = false;
-
-
-
-Future<void> signUpUser() async {
-  try {
-    final userAttributes = <CognitoUserAttributeKey, String>{
-      CognitoUserAttributeKey.email: 'email@domain.com',
-
-      // additional attributes as needed
-    };
-    final result = await Amplify.Auth.signUp(
-      username: 'myusername',
-      password: 'mysupersecurepassword',
-      options: CognitoSignUpOptions(userAttributes: userAttributes),
-    );
-    setState(() {
-      isSignUpComplete = result.isSignUpComplete;
-    });
-  } on AuthException catch (e) {
-    safePrint(e.message);
-  }
-}
-
-
-Future<void> confirmUser() async {
-  try {
-    final result = await Amplify.Auth.confirmSignUp(
-        username: 'myusername',
-        confirmationCode: '123456'
-    );
-
-    setState(() {
-      isSignUpComplete = result.isSignUpComplete;
-    });
-
-  } on AuthException catch (e) {
-    safePrint(e.message);
-  }
-}
-*/

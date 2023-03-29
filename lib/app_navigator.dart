@@ -1,5 +1,3 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mysteamapp/auth/auth_cubit.dart';
@@ -9,14 +7,14 @@ import 'package:mysteamapp/session_state.dart';
 import 'package:mysteamapp/views/session_view.dart';
 import 'package:mysteamapp/views/waiting_view.dart';
 
-import 'amplifyconfiguration.dart';
+/// this is allows to pass from the authentication flow to the session flow
 
-class AppNavigator extends StatelessWidget{
+class AppNavigator extends StatelessWidget {
   const AppNavigator({super.key});
 
   @override
-  Widget build(BuildContext context){
-    return BlocBuilder<SessionCubit,SessionState >(builder: (context, state){
+  Widget build(BuildContext context) {
+    return BlocBuilder<SessionCubit, SessionState>(builder: (context, state) {
       return Navigator(
         pages: [
           // show waiting screen
@@ -24,21 +22,19 @@ class AppNavigator extends StatelessWidget{
 
           // show connexion flow
           if (state is Unauthenticated)
-          MaterialPage(child: BlocProvider(
-            create: (context)=> AuthCubit(sessionCubit: context.read<SessionCubit>()),
-            child: const AuthNavigator(),
-          ),
-          ),
+            MaterialPage(
+              child: BlocProvider(
+                create: (context) =>
+                    AuthCubit(sessionCubit: context.read<SessionCubit>()),
+                child: const AuthNavigator(),
+              ),
+            ),
 
           // show session flow
-          if (state is Authenticated)
-            MaterialPage(child: SessionView()),
+          if (state is Authenticated) MaterialPage(child: SessionView()),
         ],
-        onPopPage: (route, result)=> route.didPop(result),
+        onPopPage: (route, result) => route.didPop(result),
       );
     });
-
   }
 }
-
-

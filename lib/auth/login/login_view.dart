@@ -1,6 +1,3 @@
-
-import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mysteamapp/auth/auth_cubit.dart';
@@ -8,9 +5,6 @@ import 'package:mysteamapp/auth/formSubmissionStatus.dart';
 import 'package:mysteamapp/auth/login/login_bloc.dart';
 import 'package:mysteamapp/auth/login/login_event.dart';
 import 'package:mysteamapp/auth/login/login_state.dart';
-import 'package:mysteamapp/views/widgets/signOut.dart';
-
-
 import '../authRepo.dart';
 
 class Login extends StatefulWidget {
@@ -66,10 +60,10 @@ class _LoginState extends State<Login> {
         //child : _loginForm(),
         child: Stack(
           alignment: Alignment.bottomCenter,
-          children: [
 
+          children: [
             _loginForm(),
-            _forgotPassword( ),
+            _forgotPassword(),
           ],
         ),
       ),
@@ -120,7 +114,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
+///Widget for the primary text
   Widget _primaryText() {
     return const Text(
       "Bienvenue !",
@@ -133,7 +127,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
+  ///Widget for the secondary text
   Widget _subText() {
     return const Text(
       "Veuillez vous connecter ou créer un nouveau compte pour utiliser l'application",
@@ -145,7 +139,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
+  ///Widget for the entering the email field
   Widget _emailField() {
     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
       return TextFormField(
@@ -177,7 +171,7 @@ class _LoginState extends State<Login> {
               ));
     });
   }
-
+  ///Widget for entering the password field the verification is made by Cognito in the backend
   Widget _passwordField() {
     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
       return TextFormField(
@@ -220,7 +214,7 @@ class _LoginState extends State<Login> {
               ));
     });
   }
-
+  ///Widget click to launch the session if the credentials are correct
   Widget _loginButton() {
     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
       return state.formStatus is FormSubmitting
@@ -251,7 +245,7 @@ class _LoginState extends State<Login> {
             );
     });
   }
-
+  ///Widget button to get access to the signup form
   Widget _createAccount(BuildContext context) {
     return InkWell(
       onTap: () => context.read<AuthCubit>().showSignup(),
@@ -277,7 +271,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
+  ///Widget tap in case you've forgot your password, widget not functional
   Widget _forgotPassword() {
     return InkWell(
       onTap: () => context.read<AuthCubit>().showForgotPassword() ,
@@ -301,22 +295,5 @@ class _LoginState extends State<Login> {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-/*
-  // Create a boolean for checking the sign in status
-  bool isSignedIn = false;
 
-  Future<void> signInUser(String username, String password) async {
-    try {
-      final result = await Amplify.Auth.signIn(
-        username: username,
-        password: password,
-      );
-
-      setState(() {
-        isSignedIn = res.isSignedIn;
-      });
-    } on AuthException catch (e) {
-      safePrint(e.message);
-    }
-  }*/
 }

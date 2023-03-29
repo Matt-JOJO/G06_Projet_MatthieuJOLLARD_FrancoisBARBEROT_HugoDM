@@ -1,5 +1,5 @@
 
-
+/// Credentials needed to launch a session
 
 class AuthCredentials {
   final String? username;

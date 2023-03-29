@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../amplifyconfiguration.dart';
 
-
-
-
-
 class OnboardingView extends StatefulWidget {
   const OnboardingView({Key? key}) : super(key: key);
 

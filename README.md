@@ -1,16 +1,19 @@
-# mysteamapp
+# Mysteamapp
 
-A new Flutter project.
+Projet flutter de Matthieu Jollard, François Barberot et Hugo Der Mathéossian 
 
-## Getting Started
+## A propos
 
-This project is a starting point for a Flutter application.
+### Backend
 
-A few resources to get you started if this is your first Flutter project:
+Pour accéder aux backend il faut vous connecter à la console de mangement aws avec les indentifiants suivants:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+mail : voir commentaire du Google form
+mp :  voir commentaire du Google form
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Nous avons utilisé amplify comme backend, c'est sur ce BaaS que l'on trouve la pool d'utilisateurs
+Cognito :mysteamapp86e50f95_userpool_86e50f95-dev 
+
+la base dynamoDB est la suivante : SteamAppLikes
+
+

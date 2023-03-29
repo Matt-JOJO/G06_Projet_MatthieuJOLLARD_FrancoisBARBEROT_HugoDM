@@ -1,15 +1,11 @@
-import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:mysteamapp/models/movieCardModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mysteamapp/models/game_card.dart';
 import 'package:mysteamapp/models/steam_api.dart';
-import 'package:mysteamapp/views/EmptyLikes.dart';
+import 'package:mysteamapp/views/likes_view.dart';
 import 'package:mysteamapp/views/Wishlist.dart';
-import 'package:mysteamapp/views/widgets/signOut.dart';
 
-
+/// This is our landing page
 
 class Acceuil extends StatefulWidget {
   const Acceuil({super.key});
@@ -31,9 +27,8 @@ class _AcceuilState extends State<Acceuil> {
   }
 
   Future<void> getGames() async {
-
     _games = await SteamAPI.getMostPlayedGame();
-    _gamesLimit = _games.take(45);
+    _gamesLimit = _games.take(35);
     for (var i in _gamesLimit) {
       await SteamAPI.getGameDetails(i);
     }
@@ -42,17 +37,6 @@ class _AcceuilState extends State<Acceuil> {
       _isLoading = false;
     });
   }
- /* Future<void> fetchData()  async {
-
-    try {
-      const options = RestOptions(path: "/items", apiName: "testApiSteam" );
-      final restOperation = Amplify.API.get(restOptions: options, );
-      final response = await restOperation.response;
-      print('GET call succeeded: ${response.body}');
-    } on ApiException catch (e) {
-      print('GET call failed: $e');
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -70,26 +54,28 @@ class _AcceuilState extends State<Acceuil> {
                 fontFamily: "GoogleSans",
               ),
             ),
-
           ),
           actions: <Widget>[
             IconButton(
               icon: SvgPicture.asset('icones/like.svg'),
               onPressed: () {
-               Navigator.push(context,MaterialPageRoute(builder: (context) => const Wishlist()), );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Wishlist()),
+                );
               },
             ),
             IconButton(
               icon: SvgPicture.asset('icones/whishlist.svg'),
               onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => const EmptyLikes()), );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EmptyLikes()),
+                );
               },
             ),
-
-
           ],
           centerTitle: false,
-
         ),
         body: Align(
           child: Column(
@@ -135,26 +121,29 @@ class _AcceuilState extends State<Acceuil> {
                           width: 380,
                           child: _isLoading
                               ? Center(child: CircularProgressIndicator())
-                              : ItemWidget(item: _gamesLimit.elementAt(0), usage: true,),
+                              : ItemWidget(
+                                  item: _gamesLimit.elementAt(0),
+                                  usage: true,
+                                ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                  height: 22,
-                    child:Text(
-                      "Les meilleures ventes",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 18,
-                        letterSpacing: 1,
-                        color: Colors.white,
-                        fontFamily: "GoogleSans",
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
+              const SizedBox(
+                height: 22,
+                child: Text(
+                  "Les meilleures ventes",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 18,
+                    letterSpacing: 1,
+                    color: Colors.white,
+                    fontFamily: "GoogleSans",
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
               ),
               Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                 Container(
@@ -168,7 +157,10 @@ class _AcceuilState extends State<Acceuil> {
                           shrinkWrap: true,
                           itemCount: _gamesLimit.length,
                           itemBuilder: (context, index) {
-                            return ItemWidget(item: _gamesLimit.elementAt(index), usage: false,);
+                            return ItemWidget(
+                              item: _gamesLimit.elementAt(index),
+                              usage: false,
+                            );
                           }),
                 )
               ]),

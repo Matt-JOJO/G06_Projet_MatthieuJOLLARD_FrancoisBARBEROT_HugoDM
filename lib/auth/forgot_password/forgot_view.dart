@@ -1,17 +1,17 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mysteamapp/auth/forgot_password/forgot_event.dart';
-
-import '../../amplifyconfiguration.dart';
 import '../authRepo.dart';
+import '../auth_cubit.dart';
 import '../formSubmissionStatus.dart';
-import '../sign_up/signup_bloc.dart';
 import 'forgot_bloc.dart';
 import 'forgot_state.dart';
 
+/// the backend of this page doesn't work
+
 class NewPassword extends StatefulWidget {
+  const NewPassword({super.key});
+
   @override
   State<NewPassword> createState() => _NewPasswordState();
 }
@@ -19,7 +19,6 @@ class NewPassword extends StatefulWidget {
 class _NewPasswordState extends State<NewPassword> {
   final _formKey = GlobalKey<FormState>();
   @override
-  // TODO: implement widget
 
 
 
@@ -31,9 +30,10 @@ class _NewPasswordState extends State<NewPassword> {
           authRepo: context.read<AuthRepo>(),
         ),
         child: Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           children: [
             _form(context),
+            _navigateLogin(),
           ],
         ),
       ),
@@ -164,7 +164,9 @@ class _NewPasswordState extends State<NewPassword> {
       );
     });
   }
-
+  Widget _navigateLogin(){
+    return SafeArea(child: TextButton(child: Text('La mémoire vous est revenue ? Se connecter'),onPressed: ()=> context.read<AuthCubit>().showLogin(),));
+  }
   void _showError(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);

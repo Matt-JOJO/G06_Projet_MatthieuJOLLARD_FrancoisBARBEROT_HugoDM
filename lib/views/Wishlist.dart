@@ -1,10 +1,32 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:mysteamapp/models/game_card.dart';
+import 'package:mysteamapp/models/steam_api.dart';
 import 'Acceuil.dart';
+import 'package:http/http.dart' as http;
 
-  class Wishlist extends StatelessWidget {
-  const Wishlist({Key? key}) : super(key: key);
+class Wishlist extends StatefulWidget {
+  const Wishlist({super.key});
+
+  @override
+
+  State<Wishlist> createState() => _WishlistState();
+
+}
+
+  class _WishlistState extends State<Wishlist> {
+
+
+    @override
+    void initState() {
+      super.initState();
+
+    }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +63,7 @@ import 'Acceuil.dart';
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Container(
               margin: const EdgeInsets.all(20.0),
               child: IconButton(
@@ -76,6 +99,7 @@ import 'Acceuil.dart';
               ),
               ),
             ),
+
           ],
         ),
       ),

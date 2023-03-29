@@ -9,6 +9,8 @@ import 'package:mysteamapp/auth/login/login_state.dart';
 import '../authRepo.dart';
 import 'login_event.dart';
 
+/// Our BloC file
+
 class LoginBloc extends Bloc<LoginEvent, LoginState>{
   final AuthRepo authRepo;
   final AuthCubit authCubit;
